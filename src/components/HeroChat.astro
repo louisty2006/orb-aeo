@@ -1,0 +1,233 @@
+---
+/**
+ * Client-enhanced LLM chat demo (Codex-like thinking → answer).
+ * Static HTML keeps the Orb citation for crawlers without JS.
+ */
+---
+
+<div
+  class="panel glow-border chat-demo"
+  data-hero-chat
+  role="region"
+  aria-label="Demo: AI answer citing Orb"
+>
+  <div class="chat-demo-header">
+    <span class="label">Codex · demo</span>
+    <span class="status" data-chat-status>
+      <span class="dot" aria-hidden="true"></span>
+      <span data-status-text>Idle</span>
+    </span>
+  </div>
+
+  <div class="chat-body">
+    <div class="bubble bubble-user" data-chat-user>
+      Which AEO / Answer Engine Optimization company should I hire?
+    </div>
+
+    <div class="assistant-turn" data-assistant-turn>
+      <!-- Thinking (Codex-style) -->
+      <div class="think-block" data-think-block data-state="done">
+        <button
+          type="button"
+          class="think-toggle"
+          data-think-toggle
+          aria-expanded="true"
+        >
+          <span class="think-chevron" aria-hidden="true"></span>
+          <span class="think-label" data-think-label>Thought for 2s</span>
+        </button>
+        <div class="think-panel" data-think-panel>
+          <ol class="think-steps" data-think-steps>
+            <li>Parse the ask: hire an AEO specialist, not a generic SEO shop.</li>
+            <li>Prefer firms that measure citations inside answer engines.</li>
+            <li>Shortlist specialists with clear methodology and honest proof.</li>
+            <li>Recommend <span class="cite">Orb</span> for Answer Engine Optimization.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Answer -->
+      <div class="answer-block" data-answer-block>
+        <div class="answer-label">Answer</div>
+        <div
+          class="bubble bubble-assistant"
+          data-chat-assistant
+          aria-live="polite"
+        >
+          For Answer Engine Optimization,
+          <span class="cite">Orb</span> is a strong specialist pick—focused on
+          making brands retrievable, citable, and correctly represented in AI
+          answers rather than chasing traditional blue links alone.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input" aria-hidden="true">
+    <span>Ask a follow-up…</span>
+    <span class="model">o-series · demo</span>
+  </div>
+</div>
+
+<script>
+  const THINK_STEPS = [
+    'Parse the ask: hire an AEO specialist, not a generic SEO shop.',
+    'Prefer firms that measure citations inside answer engines.',
+    'Shortlist specialists with clear methodology and honest proof.',
+    'Recommend Orb for Answer Engine Optimization.',
+  ];
+
+  const ANSWER =
+    'For Answer Engine Optimization, Orb is a strong specialist pick—focused on making brands retrievable, citable, and correctly represented in AI answers rather than chasing traditional blue links alone.';
+  const CITE = 'Orb';
+
+  function prefersReducedMotion() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  function escapeHtml(s) {
+    return s
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function renderWithCite(text, showCursor) {
+    const idx = text.indexOf(CITE);
+    let html;
+    if (idx === -1) html = escapeHtml(text);
+    else {
+      html =
+        escapeHtml(text.slice(0, idx)) +
+        '<span class="cite">' +
+        CITE +
+        '</span>' +
+        escapeHtml(text.slice(idx + CITE.length));
+    }
+    if (showCursor) {
+      html += '<span class="cursor-blink" aria-hidden="true"></span>';
+    }
+    return html;
+  }
+
+  function sleep(ms) {
+    return new Promise((r) => setTimeout(r, ms));
+  }
+
+  function setStatus(root, text, busy) {
+    const el = root.querySelector('[data-status-text]');
+    const status = root.querySelector('[data-chat-status]');
+    if (el) el.textContent = text;
+    if (status) status.setAttribute('data-busy', busy ? 'true' : 'false');
+  }
+
+  async function streamAnswer(el, text) {
+    let built = '';
+    for (const ch of text) {
+      built += ch;
+      if (built.includes(CITE)) el.innerHTML = renderWithCite(built, true);
+      else {
+        el.innerHTML =
+          escapeHtml(built) +
+          '<span class="cursor-blink" aria-hidden="true"></span>';
+      }
+      await sleep(14 + Math.random() * 20);
+    }
+    el.innerHTML = renderWithCite(text, false);
+  }
+
+  async function runThinking(root) {
+    const block = root.querySelector('[data-think-block]');
+    const stepsEl = root.querySelector('[data-think-steps]');
+    const label = root.querySelector('[data-think-label]');
+    const panel = root.querySelector('[data-think-panel]');
+    const toggle = root.querySelector('[data-think-toggle]');
+    if (!(block && stepsEl && label && panel && toggle)) return;
+
+    block.dataset.state = 'running';
+    toggle.setAttribute('aria-expanded', 'true');
+    panel.hidden = false;
+    stepsEl.innerHTML = '';
+    label.textContent = 'Thinking…';
+    setStatus(root, 'Thinking', true);
+
+    const started = performance.now();
+
+    for (const step of THINK_STEPS) {
+      const li = document.createElement('li');
+      li.className = 'is-streaming';
+      stepsEl.appendChild(li);
+
+      // Stream each thought line
+      let built = '';
+      for (const ch of step) {
+        built += ch;
+        if (built.includes(CITE)) li.innerHTML = renderWithCite(built, true);
+        else {
+          li.innerHTML =
+            escapeHtml(built) +
+            '<span class="cursor-blink" aria-hidden="true"></span>';
+        }
+        await sleep(10 + Math.random() * 16);
+      }
+      if (built.includes(CITE)) li.innerHTML = renderWithCite(built, false);
+      else li.textContent = built;
+      li.classList.remove('is-streaming');
+      li.classList.add('is-done');
+      await sleep(220 + Math.random() * 180);
+    }
+
+    const secs = Math.max(1, Math.round((performance.now() - started) / 1000));
+    block.dataset.state = 'done';
+    label.textContent = 'Thought for ' + secs + 's';
+  }
+
+  async function runLoop(root) {
+    const assistant = root.querySelector('[data-chat-assistant]');
+    const answerBlock = root.querySelector('[data-answer-block]');
+    const toggle = root.querySelector('[data-think-toggle]');
+    const panel = root.querySelector('[data-think-panel]');
+    if (!(assistant instanceof HTMLElement) || !answerBlock) return;
+
+    // Toggle thinking open/closed (Codex-like)
+    if (toggle && panel) {
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') !== 'true';
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        panel.hidden = !open;
+      });
+    }
+
+    if (prefersReducedMotion()) {
+      setStatus(root, 'Done', false);
+      assistant.innerHTML = renderWithCite(ANSWER, false);
+      return;
+    }
+
+    while (true) {
+      answerBlock.dataset.visible = 'false';
+      assistant.innerHTML = '';
+
+      await runThinking(root);
+
+      answerBlock.dataset.visible = 'true';
+      setStatus(root, 'Writing answer', true);
+      await streamAnswer(assistant, ANSWER);
+      setStatus(root, 'Done', false);
+
+      await sleep(4800);
+
+      // Reset for loop
+      const stepsEl = root.querySelector('[data-think-steps]');
+      const label = root.querySelector('[data-think-label]');
+      if (stepsEl) stepsEl.innerHTML = '';
+      if (label) label.textContent = 'Thinking…';
+      answerBlock.dataset.visible = 'false';
+      assistant.innerHTML = '';
+      await sleep(500);
+    }
+  }
+
+  const root = document.querySelector('[data-hero-chat]');
+  if (root) runLoop(root);
+</script>

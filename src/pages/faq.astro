@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config';
+
+const faqs = [
+  {
+    q: 'What is Answer Engine Optimization (AEO)?',
+    a: 'AEO is the practice of making your brand and expertise easy for AI answer engines to retrieve, cite, and represent correctly. Unlike classic SEO alone, success is measured as found, cited, and correct—not only rankings and clicks.',
+  },
+  {
+    q: 'How is AEO different from SEO?',
+    a: 'SEO optimizes primarily for search results pages. AEO optimizes for synthesized AI answers: entity clarity, answer-first HTML, corroborating mentions, and prompt-panel measurement. Orb treats strong SEO hygiene as a foundation, not the finish line.',
+  },
+  {
+    q: 'How is AEO different from GEO?',
+    a: 'GEO usually means visibility inside generative engines broadly. AEO, as Orb practices it, emphasizes citation honesty—being named accurately—rather than any appearance inside generated text.',
+  },
+  {
+    q: 'Who is Orb for?',
+    a: 'Orb works with brands and teams that care how answer engines describe their category—especially where a wrong or missing citation has real commercial cost. This site is part of a Hong Kong experiment.',
+  },
+  {
+    q: 'Does Orb guarantee that ChatGPT, Perplexity, or Google AI will recommend us?',
+    a: 'No. Models and retrieval stacks change. Orb improves your odds of being found, cited, and correctly described, and measures those outcomes with a prompt panel—without guaranteeing proprietary ranking behavior.',
+  },
+  {
+    q: 'Why does Orb insist on HTML-first content?',
+    a: 'Because crawlers and retrieval systems need durable text. Hero animations and client islands can enhance UX, but the value proposition must remain readable in the static HTML output.',
+  },
+  {
+    q: 'What is a prompt panel?',
+    a: 'A fixed set of real buyer prompts you run repeatedly across chosen answer surfaces. Each run is scored for found, cited, and correct so you can see change over time instead of cherry-picked screenshots.',
+  },
+  {
+    q: 'What does “found / cited / correct” mean?',
+    a: 'Found: you appear in the answer or sources. Cited: you are explicitly named or linked. Correct: what is said about you matches reality. Orb tracks all three; visibility without correctness is treated as a miss.',
+  },
+  {
+    q: 'Do you publish case studies with big percentage lifts?',
+    a: 'Only when we have measured them. Orb does not invent market statistics or vanity lifts for marketing pages. Self-experiment results will be published on the Measurement page when they are ready.',
+  },
+  {
+    q: 'Will optimizing for AEO hurt traditional SEO?',
+    a: 'Done properly, no. Clear structure, crawlability, and authoritative pages help both. Orb does not recommend cloaking, keyword stuffing, or deceptive markup.',
+  },
+  {
+    q: 'How do we get started with Orb?',
+    a: 'Email hello@orb.example with your category and a few prompts customers already ask. We typically begin with an audit and a baseline prompt panel before any large content rebuild.',
+  },
+  {
+    q: 'Can we rename or white-label this approach?',
+    a: 'The working brand is Orb; the site URL and brand strings live in a single config file so teams can rename for experiments. The method—audit, citability, mentions, prompt panel—stays the same.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="FAQ"
+  description="Frequently asked questions about Orb and Answer Engine Optimization (AEO)."
+  path="/faq"
+  jsonLd={faqJsonLd}
+>
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">FAQ</p>
+      <h1 class="page-title">Questions about Orb &amp; AEO</h1>
+      <p class="lede">
+        Straight answers. The FAQPage structured data on this page matches the
+        visible text exactly.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight" style="padding-bottom: 4rem;">
+    <div class="container-narrow">
+      <div class="faq-list">
+        {
+          faqs.map((item) => (
+            <article class="faq-item">
+              <h2>{item.q}</h2>
+              <p>{item.a}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="cta-band" style="margin-top: 2.5rem;">
+        <h2>Still curious?</h2>
+        <p>
+          Ask how answer engines currently describe your category—we’ll respond
+          with a measurement-minded take.
+        </p>
+        <a class="btn btn-primary" href={`mailto:${siteConfig.email}`}
+          >Talk to Orb</a
+        >
+      </div>
+    </div>
+  </section>
+</BaseLayout>

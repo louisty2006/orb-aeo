@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Measurement"
+  description="How Orb measures AEO: prompt panel methodology for found, cited, and correct—plus an honest self-experiment."
+  path="/measurement"
+>
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">Prompt panel</p>
+      <h1 class="page-title">How we measure AEO</h1>
+      <p class="lede">
+        Visibility without accuracy is a liability. Orb scores answer-engine
+        performance on three axes: found, cited, and correct—using a fixed
+        prompt panel you can repeat over time.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="metric-row">
+        <span class="metric"><strong>Found</strong> — present in the answer or sources</span>
+        <span class="metric"><strong>Cited</strong> — named or linked as attribution</span>
+        <span class="metric"><strong>Correct</strong> — description matches reality</span>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3>Found</h3>
+          <p>
+            Does the answer (or its visible sources) include your brand,
+            product, or a clearly attributable claim? Absence here is a
+            retrieval or entity problem first.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Cited</h3>
+          <p>
+            Are you explicitly named or linked as a source—not merely
+            paraphrased into the prose? Citation is the AEO win condition for
+            many B2B categories.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Correct</h3>
+          <p>
+            When you appear, is the description accurate? Wrong citations are
+            tracked as failures even if “visibility” looks high.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow prose">
+      <h2>Prompt panel methodology</h2>
+      <ol>
+        <li>
+          <strong>Define the panel.</strong> A stable list of prompts that
+          real buyers ask (category, comparison, “best for”, local, and
+          objection prompts). Freeze wording for a measurement cycle.
+        </li>
+        <li>
+          <strong>Choose surfaces.</strong> The engines and modes your
+          audience actually uses. Document versions / dates; models change.
+        </li>
+        <li>
+          <strong>Run &amp; record.</strong> Capture full answers and visible
+          citations. Score found / cited / correct per prompt with a short
+          rubric—not vibes.
+        </li>
+        <li>
+          <strong>Aggregate carefully.</strong> Report rates and qualitative
+          misses. Do not invent market share or “AI traffic” numbers you
+          cannot observe.
+        </li>
+        <li>
+          <strong>Feed the loop.</strong> Misses become audit and content
+          work. Re-run the same panel after changes.
+        </li>
+      </ol>
+
+      <h2>What we refuse to fake</h2>
+      <p>
+        No fabricated percentage lifts, no made-up “share of AI answers,” no
+        anonymized logos implying customers we do not have. If a number is not
+        measured, it does not appear on this site.
+      </p>
+
+      <h2>Orb self-experiment (Hong Kong)</h2>
+      <p>
+        Orb is running its own AEO experiment on this brand and category. We
+        are applying the same audit → citability → mentions → prompt panel
+        loop described on How we work.
+      </p>
+      <p>
+        <strong>Results: coming.</strong> When we have repeatable panel
+        outcomes worth publishing, they will land here—with methodology and
+        caveats. Until then, treat any third-party “AEO leaderboard” claims
+        with skepticism unless they show their prompts.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight" style="padding-bottom: 4rem;">
+    <div class="container">
+      <div class="cta-band">
+        <h2>Want a baseline panel?</h2>
+        <p>
+          Bring your category prompts. We’ll score found / cited / correct and
+          show you the gaps—without inventing benchmarks.
+        </p>
+        <a class="btn btn-primary" href="mailto:hello@orb.example"
+          >Talk to Orb</a
+        >
+      </div>
+    </div>
+  </section>
+</BaseLayout>

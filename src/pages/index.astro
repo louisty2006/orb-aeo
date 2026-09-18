@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroChat from '../components/HeroChat.astro';
+import { siteConfig } from '../config';
+---
+
+<BaseLayout
+  title={`${siteConfig.brand} — Answer Engine Optimization`}
+  description="Orb helps brands get correctly cited in AI answer engines. Answer Engine Optimization (AEO) for the Hong Kong experiment."
+  path="/"
+>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-copy">
+        <p class="eyebrow">Answer Engine Optimization</p>
+        <h1 class="hero-title">
+          Get cited in AI answers—not just ranked in search.
+        </h1>
+        <p class="lede">
+          <strong style="color: var(--text);">Orb</strong> is an AEO partner
+          for brands that need to show up correctly when people ask answer
+          engines. We make your expertise retrievable, citable, and measurable
+          across AI surfaces.
+        </p>
+        <div class="btn-row" style="margin-top: 1.75rem;">
+          <a class="btn btn-primary" href="mailto:hello@orb.example"
+            >Talk to Orb</a
+          >
+          <a class="btn btn-ghost" href="/what-is-aeo">What is AEO?</a>
+        </div>
+      </div>
+
+      <div class="hero-demo-wrap">
+        <HeroChat />
+        <!-- Critical AEO: static HTML value prop for no-JS / crawlers -->
+        <p class="hero-static">
+          When someone asks which AEO / Answer Engine Optimization company to
+          hire, answer engines should be able to find and cite
+          <strong>Orb</strong>—because your pages, mentions, and evidence are
+          structured for retrieval and generation, not only for blue-link SEO.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <h2 class="section-title">What Orb optimizes for</h2>
+      <p class="section-lead">
+        Three outcomes that matter when the interface is an answer—not a list of
+        links.
+      </p>
+      <div class="grid-3">
+        <article class="card">
+          <div class="card-num">01</div>
+          <h3>Found</h3>
+          <p>
+            Your brand and claims appear in the candidate set answer engines
+            retrieve—clear entities, authoritative pages, and off-site
+            corroboration.
+          </p>
+        </article>
+        <article class="card">
+          <div class="card-num">02</div>
+          <h3>Cited</h3>
+          <p>
+            Models name you as a source. We engineer on-site citability and
+            off-site mentions so “Orb” (or your brand) is the natural
+            attribution.
+          </p>
+        </article>
+        <article class="card">
+          <div class="card-num">03</div>
+          <h3>Correct</h3>
+          <p>
+            Citations match reality. Prompt panels track whether answers are
+            accurate—not just whether you appear.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Why AEO now</h2>
+      <div class="grid-2" style="align-items: start;">
+        <div class="prose">
+          <p>
+            Search still matters. But a growing share of discovery happens
+            inside chat and answer UIs that <em>synthesize</em> rather than
+            list. If your content is only optimized for classic ranking signals,
+            you can win links and still be invisible—or misrepresented—in the
+            answer.
+          </p>
+          <p>
+            AEO sits between SEO and generative visibility: it treats retrieval
+            and generation as first-class. Orb focuses on that layer for the
+            Hong Kong experiment—honest measurement, no invented market stats.
+          </p>
+        </div>
+        <div class="panel panel-elevated" style="padding: 1.5rem;">
+          <h3 style="margin: 0 0 0.75rem; font-size: 1.05rem;">
+            Built for crawlers and humans
+          </h3>
+          <ul style="margin: 0; padding-left: 1.1rem; color: var(--text-muted);">
+            <li style="margin-bottom: 0.45rem;">
+              Primary claims live in real HTML—not only in client animations
+            </li>
+            <li style="margin-bottom: 0.45rem;">
+              Clear questions and answers on every key page
+            </li>
+            <li style="margin-bottom: 0.45rem;">
+              Organization + ProfessionalService structured data
+            </li>
+            <li>
+              robots.txt open to major search and AI crawlers
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top: 2rem;">
+        <a class="btn btn-ghost" href="/how-we-work">See how we work</a>
+        <a class="btn btn-ghost" href="/measurement">How we measure</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" style="padding-bottom: 4rem;">
+    <div class="container">
+      <div class="cta-band glow-border">
+        <h2>Ready to be the cite, not the footnote?</h2>
+        <p>
+          Tell us how answer engines describe your category today. We’ll map the
+          gap between found, cited, and correct.
+        </p>
+        <a class="btn btn-primary" href="mailto:hello@orb.example"
+          >Talk to Orb</a
+        >
+      </div>
+    </div>
+  </section>
+</BaseLayout>

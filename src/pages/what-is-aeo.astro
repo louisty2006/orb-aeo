@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="What is AEO?"
+  description="Answer Engine Optimization (AEO) vs SEO vs GEO: retrieval, generation, and content principles for AI answers."
+  path="/what-is-aeo"
+>
+  <section class="section">
+    <div class="container-narrow">
+      <p class="eyebrow">Fundamentals</p>
+      <h1 class="page-title">What is Answer Engine Optimization?</h1>
+      <p class="lede">
+        AEO is the practice of making your brand and expertise easy for AI
+        answer engines to retrieve, cite, and represent correctly—when the
+        product is an answer, not a SERP.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <h2 class="section-title">AEO vs SEO vs GEO</h2>
+      <p class="section-lead">
+        Related disciplines with different optimization targets. Orb focuses on
+        AEO without discarding what SEO still does well.
+      </p>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th scope="col">Lens</th>
+              <th scope="col">Primary surface</th>
+              <th scope="col">Success looks like</th>
+              <th scope="col">Orb emphasis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>SEO</strong></td>
+              <td>Search results pages</td>
+              <td>Rankings, clicks, organic traffic</td>
+              <td>Foundation: crawlable, clear sites</td>
+            </tr>
+            <tr>
+              <td><span class="hl">AEO</span></td>
+              <td>AI answers &amp; chat</td>
+              <td>Found · cited · correct</td>
+              <td><span class="hl">Core practice</span></td>
+            </tr>
+            <tr>
+              <td><strong>GEO</strong></td>
+              <td>Generative engines broadly</td>
+              <td>Visibility inside generated content</td>
+              <td>Overlaps with AEO; we stay citation-honest</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow prose">
+      <h2>Retrieval vs generation</h2>
+      <p>
+        Answer engines typically <strong>retrieve</strong> candidate passages or
+        documents, then <strong>generate</strong> a synthesized response. If you
+        only optimize for generation (clever wording) without retrieval
+        (finding you at all), you stay out of the candidate set. If you only
+        optimize for retrieval without citability and factual clarity, you may
+        be used poorly—or paraphrased without credit.
+      </p>
+      <p>
+        Orb designs for both sides of that loop: entities and pages that can be
+        found, and claims that are easy to quote accurately.
+      </p>
+
+      <h2>Content principles for AEO</h2>
+      <ul>
+        <li>
+          <strong>Answer-first HTML.</strong> Lead with the clear answer in
+          server-rendered markup. Enhancements (animations, islands) must not
+          hide the claim from crawlers.
+        </li>
+        <li>
+          <strong>Question-shaped sections.</strong> Mirror how people ask;
+          keep headings and paragraphs aligned with real prompts.
+        </li>
+        <li>
+          <strong>Entity clarity.</strong> Consistent brand, product, and
+          people names; structured data that matches visible text.
+        </li>
+        <li>
+          <strong>Evidence &amp; attribution.</strong> Support claims with
+          sources; make it easy to cite you rather than invent you.
+        </li>
+        <li>
+          <strong>Corroboration off-site.</strong> Mentions and references
+          elsewhere reinforce what on-site pages assert.
+        </li>
+        <li>
+          <strong>Honest measurement.</strong> Track found / cited / correct
+          with a prompt panel—no vanity metrics or invented market share.
+        </li>
+      </ul>
+
+      <h2>What AEO is not</h2>
+      <p>
+        AEO is not a guarantee that every model will recommend you. It is not
+        prompt injection theater, and it is not a replacement for product
+        quality or classic technical SEO. Orb will not invent statistics to
+        sell urgency.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight" style="padding-bottom: 4rem;">
+    <div class="container">
+      <div class="cta-band">
+        <h2>See the working method</h2>
+        <p>Audit → on-site citability → off-site mentions → prompt panel.</p>
+        <a class="btn btn-primary" href="/how-we-work">How we work</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
