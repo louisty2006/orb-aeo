@@ -1,11 +1,63 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config';
+
+const siteUrl = `${siteConfig.siteUrl}/`;
+
+const steps = [
+  {
+    name: 'Audit',
+    text: 'Map category prompts, current answers, competitors cited, and gaps in your entity footprint. Establish a baseline for found / cited / correct before changing anything.',
+  },
+  {
+    name: 'On-site citability',
+    text: 'Rewrite and structure pages so claims are answer-first in HTML: clear definitions, FAQs that match real questions, schema that mirrors visible copy, technical crawl health.',
+  },
+  {
+    name: 'Off-site mentions',
+    text: 'Build corroboration where answer engines and humans already look: references, listings, expert quotes, and partner pages that name you consistently—not spammy link schemes.',
+  },
+  {
+    name: 'Prompt panel',
+    text: 'Run a fixed set of prompts on a schedule. Score whether you are found, cited, and correctly described. Feed misses back into the audit.',
+  },
+];
+
+// Item 5 — describe the method as a Service, with a HowTo for the steps.
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Answer Engine Optimization (AEO)',
+  serviceType: 'Answer Engine Optimization',
+  description:
+    'Orb’s four-step AEO method: audit, on-site citability, off-site mentions, and prompt panel measurement.',
+  url: siteUrl + 'how-we-work/',
+  provider: { '@id': siteUrl + '#organization' },
+  isPartOf: { '@id': siteUrl + '#website' },
+  areaServed: { '@type': 'Place', name: siteConfig.region },
+};
+
+const howToJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Orb’s four-step AEO method',
+  description:
+    'A practical loop: understand how answer engines talk about you today, harden on-site citability, earn corroborating mentions, then measure with a living prompt panel.',
+  isPartOf: { '@id': siteUrl + '#website' },
+  step: steps.map((s, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: s.name,
+    text: s.text,
+  })),
+};
 ---
 
 <BaseLayout
   title="How we work"
   description="Orb’s four-step AEO method: audit, on-site citability, off-site mentions, and prompt panel measurement."
-  path="/how-we-work"
+  path="/how-we-work/"
+  jsonLd={[serviceJsonLd, howToJsonLd]}
 >
   <section class="section">
     <div class="container-narrow">
@@ -21,6 +73,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="section-tight">
     <div class="container">
+      <h2 class="section-title">The four-step method</h2>
       <div class="steps">
         <article class="step">
           <div class="card-num">01</div>
