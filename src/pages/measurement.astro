@@ -1,11 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config';
+
+const siteUrl = `${siteConfig.siteUrl}/`;
+
+// Item 5 — the measurement page describes a methodology / service.
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'AEO measurement — prompt panel methodology',
+  serviceType: 'Answer Engine Optimization measurement',
+  description:
+    'How Orb measures AEO: prompt panel methodology that scores found, cited, and correct over time.',
+  url: siteUrl + 'measurement/',
+  provider: { '@id': siteUrl + '#organization' },
+  isPartOf: { '@id': siteUrl + '#website' },
+  areaServed: { '@type': 'Place', name: siteConfig.region },
+};
 ---
 
 <BaseLayout
   title="Measurement"
   description="How Orb measures AEO: prompt panel methodology for found, cited, and correct—plus an honest self-experiment."
-  path="/measurement"
+  path="/measurement/"
+  jsonLd={serviceJsonLd}
 >
   <section class="section">
     <div class="container-narrow">
@@ -21,6 +39,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="section-tight">
     <div class="container">
+      <h2 class="section-title">The three axes</h2>
       <div class="metric-row">
         <span class="metric"><strong>Found</strong> — present in the answer or sources</span>
         <span class="metric"><strong>Cited</strong> — named or linked as attribution</span>

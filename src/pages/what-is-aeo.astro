@@ -1,11 +1,36 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config';
+
+const siteUrl = `${siteConfig.siteUrl}/`;
+
+// Item 5 — this page is fundamentally an explainer article / term definition.
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'What is Answer Engine Optimization?',
+  description:
+    'Answer Engine Optimization (AEO) vs SEO vs GEO: retrieval, generation, and content principles for AI answers.',
+  author: { '@id': siteUrl + '#organization' },
+  publisher: { '@id': siteUrl + '#organization' },
+  isPartOf: { '@id': siteUrl + '#website' },
+  mainEntityOfPage: siteUrl + 'what-is-aeo/',
+  inLanguage: siteConfig.locale,
+  about: {
+    '@type': 'DefinedTerm',
+    name: 'Answer Engine Optimization',
+    alternateName: 'AEO',
+    description:
+      'The practice of making a brand and its expertise easy for AI answer engines to retrieve, cite, and represent correctly.',
+  },
+};
 ---
 
 <BaseLayout
   title="What is AEO?"
   description="Answer Engine Optimization (AEO) vs SEO vs GEO: retrieval, generation, and content principles for AI answers."
-  path="/what-is-aeo"
+  path="/what-is-aeo/"
+  jsonLd={articleJsonLd}
 >
   <section class="section">
     <div class="container-narrow">
