@@ -1,17 +1,33 @@
-# Allow major search & answer-engine crawlers
+# robots.txt for https://orb-aeo.space
+#
+# Phase 1 policy: ALL listed crawlers are allowed (Allow: /).
+# This file documents the difference between two classes of crawlers so the
+# intent is explicit. No Disallow rules are used in this phase.
+#
+#   [Search]  Classic search engines: index pages and drive organic traffic.
+#   [Train]   AI model / training and AI answer-engine crawlers: allowed too,
+#             deliberately, to maximize answer-engine visibility in Phase 1.
+#
+# Every group below remains Allow: / — search bots AND training bots.
+
+# --- [Search] Search engine crawlers (Allow) ---
 User-agent: *
 Allow: /
 
 User-agent: Googlebot
 Allow: /
 
-User-agent: Google-Extended
+User-agent: Bingbot
 Allow: /
 
+User-agent: Applebot
+Allow: /
+
+# --- [Train] AI training / model crawlers (Allow in Phase 1) ---
 User-agent: GPTBot
 Allow: /
 
-User-agent: ChatGPT-User
+User-agent: Google-Extended
 Allow: /
 
 User-agent: ClaudeBot
@@ -20,19 +36,17 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Applebot
+User-agent: CCBot
 Allow: /
 
 User-agent: Applebot-Extended
 Allow: /
 
-User-agent: Bingbot
+# --- [Train] AI answer-engine crawlers (Allow in Phase 1) ---
+User-agent: ChatGPT-User
 Allow: /
 
-User-agent: CCBot
+User-agent: PerplexityBot
 Allow: /
 
 Sitemap: https://orb-aeo.space/sitemap-index.xml
